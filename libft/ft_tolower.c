@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 18:34:08 by cbopp             #+#    #+#             */
-/*   Updated: 2024/08/19 18:34:08 by cbopp            ###   ########.fr       */
+/*   Created: 2024/10/01 17:57:37 by pbuet             #+#    #+#             */
+/*   Updated: 2024/10/02 13:55:04 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_tolower(int c)
 {
-	if (ft_isupper(c))
-		c += 32;
+	if (c <= 90 && c >= 65)
+		return (c + 32);
 	return (c);
 }

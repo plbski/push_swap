@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 13:33:08 by cbopp             #+#    #+#             */
-/*   Updated: 2024/10/05 21:12:27 by cbopp            ###   ########.fr       */
+/*   Created: 2024/10/07 15:23:44 by pbuet             #+#    #+#             */
+/*   Updated: 2024/10/18 14:39:08 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+int	ft_putchar(char c)
 {
-	if (!lst)
-		return ;
-	while (lst)
-	{
-		(*f)(lst->content);
-		lst = lst->next;
-	}
+	ssize_t	written;
+
+	written = write (1, &c, 1);
+	if (written == -1)
+		return (-1);
+	return (1);
 }

@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 18:04:31 by cbopp             #+#    #+#             */
-/*   Updated: 2024/08/19 18:04:31 by cbopp            ###   ########.fr       */
+/*   Created: 2024/09/26 11:25:39 by plbuet            #+#    #+#             */
+/*   Updated: 2024/10/03 13:16:35 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include "libft.h"
+
+int	ft_isdigit(int a)
 {
-	if (c >= '0' && c <= '9')
+	if (a >= '0' && a <= '9')
 		return (1);
 	return (0);
 }

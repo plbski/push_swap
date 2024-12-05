@@ -3,32 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 15:53:36 by cbopp             #+#    #+#             */
-/*   Updated: 2024/10/05 21:09:29 by cbopp            ###   ########.fr       */
+/*   Created: 2024/10/01 18:13:03 by pbuet             #+#    #+#             */
+/*   Updated: 2024/10/08 09:42:35 by plbuet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int	ft_atoi(const char *str)
 {
-	int	result;
-	int	sign;
+	int			i;
+	int			np;
+	long int	num;
 
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	sign = 1;
-	if (*str == '-' || *str == '+')
+	i = 0;
+	np = 1;
+	num = 0;
+	while ((str[i] == 32) || ((str[i] >= 9) && (str[i] <= 13)))
+		i ++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (*str == '-')
-			sign = -1;
-		str++;
+		if (str[i] == '-')
+			np = -1;
+		i ++;
 	}
-	result = 0;
-	while (*str >= '0' && *str <= '9')
+	while ((str[i] >= 48) && (str[i] <= 57))
 	{
-		result = result * 10 + (*str - '0');
-		str++;
+		num = (str[i] - 48) + (num * 10);
+		i ++;
 	}
-	return (result * sign);
+	return (num * np);
 }

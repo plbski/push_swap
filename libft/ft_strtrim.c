@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 11:56:10 by cbopp             #+#    #+#             */
-/*   Updated: 2024/10/02 12:16:15 by cbopp            ###   ########.fr       */
+/*   Created: 2024/10/03 11:39:52 by pbuet             #+#    #+#             */
+/*   Updated: 2024/10/09 16:00:09 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,21 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	i;
+	size_t	start;
+	size_t	end;
+	char	*s2;
 
 	if (!s1 || !set)
 		return (NULL);
-	while (*s1 && ft_strchr(set, *s1))
-		s1++;
-	i = ft_strlen(s1);
-	while (i && ft_strchr(set, s1[i]))
-		i--;
-	return (ft_substr(s1, 0, i + 1));
+	start = 0;
+	while (s1[start] && ft_strchr(set, (int)s1[start]) != NULL)
+		start ++;
+	end = ft_strlen(s1);
+	while (end > start && ft_strrchr(set, (int)s1[end - 1]) != NULL)
+		end --;
+	s2 = malloc(sizeof(char) * (end - start + 1));
+	if (s2 == NULL)
+		return (NULL);
+	ft_strlcpy(s2, &s1[start], end - start + 1);
+	return (s2);
 }

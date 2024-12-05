@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 22:47:03 by cbopp             #+#    #+#             */
-/*   Updated: 2024/10/05 21:14:26 by cbopp            ###   ########.fr       */
+/*   Created: 2024/10/07 15:16:24 by pbuet             #+#    #+#             */
+/*   Updated: 2024/10/08 09:45:25 by plbuet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	unsigned int	i;
+	int	i ;
 
 	i = 0;
 	while (s[i])
 	{
-		(*f)(i, &s[i]);
-		i++;
+		f(i, &s[i]);
+		i ++;
 	}
 }

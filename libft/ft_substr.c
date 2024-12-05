@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pbuet <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 23:01:25 by cbopp             #+#    #+#             */
-/*   Updated: 2024/10/14 11:57:35 by root             ###   ########.fr       */
+/*   Created: 2024/10/03 11:15:25 by pbuet             #+#    #+#             */
+/*   Updated: 2024/10/09 15:20:16 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,27 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*str;
-	size_t	slen;
-	size_t	finish;
+	char	*s2;
+	size_t	i;
 
-	if (!s)
-		return (0);
-	slen = ft_strlen(s);
-	if (start >= slen)
+	i = 0;
+	if (start >= (unsigned int)ft_strlen(s))
 	{
-		str = (char *)malloc(1);
-		if (!str)
-			return (NULL);
-		str[0] = '\0';
-		return (str);
+		s2 = malloc(sizeof(char));
+		if (s2)
+			s2[0] = '\0';
+		return (s2);
 	}
-	finish = 0;
-	if (start < slen)
-		finish = slen - start;
-	if (finish > len)
-		finish = len;
-	str = (char *)malloc(sizeof(char) * (finish + 1));
-	if (!str)
+	if (ft_strlen(s) - start < len)
+		len = ft_strlen(s) - start;
+	s2 = malloc(sizeof(char) * (len + 1));
+	if (s2 == NULL)
 		return (NULL);
-	ft_strlcpy(str, s + start, finish + 1);
-	return (str);
+	while (i < len)
+	{
+		s2[i] = s[start + i];
+		i ++;
+	}
+	s2[i] = '\0';
+	return (s2);
 }

@@ -1,3 +1,4 @@
+
 SRC = 
 # char
 SRC += ft_isalnum.c
@@ -57,15 +58,7 @@ SRC += ft_putnbr_fd.c
 SRC += ft_printlst.c
 
 #bonus
-SRCB = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
-	   ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
-	   ft_lstmap.c
-
-# Tables
-SRC += tables.c
-
-# GNL
-SRC += get_next_line.c get_next_line_utils.c
+SRCB = 
 
 PRINTF_A = libftprintf.a
 PRINTF_DIR = printf/

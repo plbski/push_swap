@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 18:17:29 by cbopp             #+#    #+#             */
-/*   Updated: 2024/08/19 18:17:29 by cbopp            ###   ########.fr       */
+/*   Created: 2024/09/26 11:30:34 by plbuet            #+#    #+#             */
+/*   Updated: 2024/10/03 13:16:56 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(int c)
+#include "libft.h"
+
+int	ft_isascii(int a)
 {
-	return (c >= 0 && c < 128);
+	if ((a >= 0) && (a <= 127))
+		return (1);
+	return (0);
 }

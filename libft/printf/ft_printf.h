@@ -3,30 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pbuet <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/06 11:26:25 by cbopp             #+#    #+#             */
-/*   Updated: 2024/11/10 19:27:58 by cbopp            ###   ########.fr       */
+/*   Created: 2024/10/03 18:47:48 by plbuet            #+#    #+#             */
+/*   Updated: 2024/10/18 14:41:16 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-
-# include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
+# include <stdarg.h>
 
+int	ft_putnbr(int n, int count);
+int	ft_putstr(char *s);
+int	ft_putaddr(size_t ptr);
 int	ft_putchar(char c);
-int	ft_putstr(char *str);
+int	ft_pnb(size_t n, const char *base, int count, size_t len);
 int	ft_printf(const char *format, ...);
-
-int	ft_putnbr(int n);
-
-int	ft_putptr(unsigned long long ptr);
-
-int	ft_puthex(unsigned int num, const char format);
-
-int	ft_putunsigned(unsigned int n);
 
 #endif

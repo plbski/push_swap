@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tables.c                                           :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pbuet <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 14:42:44 by root              #+#    #+#             */
-/*   Updated: 2024/10/20 19:45:10 by root             ###   ########.fr       */
+/*   Created: 2024/10/10 13:42:44 by pbuet             #+#    #+#             */
+/*   Updated: 2024/10/10 15:32:04 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_chartable_linecount(char **table)
+t_list	*ft_lstlast(t_list *lst)
 {
-	int	count;
+	t_list	*tmp;
 
-	count = 0;
-	while (table[count])
-		count++;
-	return (count);
-}
-
-// Frees a 2D table
-void	ft_free_chartable(char **table)
-{
-	int	i;
-
-	i = 0;
-	while (table[i])
-	{
-		free(table[i]);
-		i++;
-	}
-	free(table);
+	if (!lst)
+		return (NULL);
+	tmp = lst;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	return (tmp);
 }

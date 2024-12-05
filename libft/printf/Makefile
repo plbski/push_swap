@@ -1,28 +1,29 @@
-NAME = libftprintf.a
-LIBC = ar rcs
+
+SOURCE = ft_printf.c ft_putchar.c ft_putnbr.c ft_putstr.c
+
+
+OBJET = $(SOURCE:.c=.o)
+
+FLAG = -Wall -Werror -Wextra
+
 CC = gcc
-RM = rm -f
-FLAGS = -Wall -Wextra -Werror
-OBJS = $(SRC:.c=.o)
 
-SRC = ft_printf.c ft_printdec.c ft_printptr.c ft_printunsigned.c ft_puthex.c
+NAME = libftprintf.a
 
-$(NAME): $(OBJS) $(LIBFT)
-	@$(LIBC) $(NAME) $(OBJS)
+all : $(NAME)
 
-.c.o:
-	@$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
+$(NAME): $(OBJET)
+	ar rcs $(NAME) $(OBJET)
 
-all: $(NAME)
+%.o: %.c 
+	$(CC) $(FLAG) -c $< -o $@
+
 
 clean:
-	@echo "-> Cleaning printf object files.."
-	@$(RM) $(OBJS) 
+	rm -f $(OBJET) $(NAME)
 
 fclean: clean
-	@echo "-> Removing archive..."
-	@$(RM) $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re 

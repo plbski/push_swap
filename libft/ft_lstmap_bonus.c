@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 13:38:27 by cbopp             #+#    #+#             */
-/*   Updated: 2024/10/05 22:18:06 by cbopp            ###   ########.fr       */
+/*   Created: 2024/10/10 14:41:49 by pbuet             #+#    #+#             */
+/*   Updated: 2024/10/10 15:37:20 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*new;
-	t_list	*node;
+	t_list	*save_lst;
 
-	if (!lst)
+	if (!lst || !del || !f)
 		return (NULL);
-	new = NULL;
+	save_lst = NULL;
 	while (lst)
 	{
-		node = ft_lstnew(f(lst->content));
-		if (!node)
+		new = ft_lstnew(f(lst->content));
+		if (!new)
 		{
-			ft_lstclear(&node, del);
+			ft_lstdelone(new, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&new, node);
+		ft_lstadd_back(&save_lst, new);
 		lst = lst->next;
 	}
-	return (new);
+	return (save_lst);
 }

@@ -3,23 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 10:33:08 by cbopp             #+#    #+#             */
-/*   Updated: 2024/10/05 22:03:37 by cbopp            ###   ########.fr       */
+/*   Created: 2024/09/26 12:00:17 by plbuet            #+#    #+#             */
+/*   Updated: 2024/10/03 17:25:34 by plbuet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_bzero(void *s, size_t len)
 {
-	size_t	i;
+	size_t			i;
+	unsigned char	*s1;
 
 	i = 0;
-	while (i < n)
+	s1 = (unsigned char *) s;
+	while (i < len)
 	{
-		*(char *)(s + i) = '\0';
-		i++;
+		s1[i] = '\0';
+		i ++;
 	}
+	return (s);
 }

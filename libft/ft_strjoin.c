@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 11:04:17 by cbopp             #+#    #+#             */
-/*   Updated: 2024/10/03 10:36:33 by cbopp            ###   ########.fr       */
+/*   Created: 2024/10/03 11:26:39 by pbuet             #+#    #+#             */
+/*   Updated: 2024/12/05 11:43:28 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,27 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*new;
-	size_t	len;
+	int		len_s3;
 	int		i;
 	int		j;
+	char	*s3;
 
-	len = ft_strlen(s1) + ft_strlen(s2);
-	new = (char *)malloc(sizeof(char) * (len + 1));
-	if (!new)
-		return (NULL);
 	i = 0;
 	j = 0;
+	len_s3 = ft_strlen(s1) + ft_strlen(s2);
+	s3 = malloc(sizeof(char) * len_s3 + 1);
+	if (s3 == NULL)
+		return (NULL);
 	while (s1[i])
 	{
-		new[i] = s1[i];
-		i++;
+		s3[i] = s1[i];
+		i ++;
 	}
 	while (s2[j])
 	{
-		new[i] = s2[j];
-		i++;
-		j++;
+		s3[i + j] = s2[j];
+		j ++;
 	}
-	new[i] = '\0';
-	return (new);
+	s3[i + j] = '\0';
+	return (s3);
 }

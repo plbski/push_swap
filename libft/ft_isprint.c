@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 18:24:43 by cbopp             #+#    #+#             */
-/*   Updated: 2024/08/19 18:24:43 by cbopp            ###   ########.fr       */
+/*   Created: 2024/09/26 11:32:44 by plbuet            #+#    #+#             */
+/*   Updated: 2024/10/03 13:17:19 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int c)
+#include "libft.h"
+
+int	ft_isprint(int a)
 {
-	return (c >= 32 && c < 127);
+	if ((a >= 32) && (a <= 126))
+		return (1);
+	return (0);
 }

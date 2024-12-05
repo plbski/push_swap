@@ -3,117 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pbuet <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/05 22:30:28 by cbopp             #+#    #+#             */
-/*   Updated: 2024/11/10 19:28:26 by cbopp            ###   ########.fr       */
+/*   Created: 2024/10/13 16:43:15 by pbuet             #+#    #+#             */
+/*   Updated: 2024/10/18 14:44:18 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include"ft_printf.h"
 
-int	ft_putchar(char c)
+int	partition(char conversion, va_list *args)
 {
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_putstr(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str == NULL)
+	if (conversion == 'c')
 	{
-		write(1, "(null)", 6);
-		return (6);
+		return (ft_putchar(va_arg(*args, int)));
 	}
-	while (str[i])
+	else if (conversion == 's')
+		return (ft_putstr(va_arg(*args, char *)));
+	else if (conversion == 'p')
 	{
-		write(1, &str[i], 1);
-		i++;
+		return (ft_putaddr(va_arg(*args, size_t)));
 	}
-	return (i);
-}
-
-int	ft_conversion(va_list v1, const char format)
-{
-	int	char_printed;
-
-	char_printed = 0;
-	if (format == 'c')
-		char_printed += ft_putchar(va_arg(v1, int));
-	else if (format == 's')
-		char_printed += ft_putstr(va_arg(v1, char *));
-	else if (format == 'p')
-		char_printed += ft_putptr(va_arg(v1, unsigned long long));
-	else if (format == 'd' || format == 'i')
-		char_printed += ft_putnbr(va_arg(v1, int));
-	else if (format == 'u')
-		char_printed += ft_putunsigned(va_arg(v1, unsigned int));
-	else if (format == 'x' || format == 'X')
-		char_printed += ft_puthex(va_arg(v1, unsigned int), format);
-	else if (format == '%')
-		char_printed += ft_putchar('%');
-	return (char_printed);
+	else if (conversion == 'd' || conversion == 'i')
+		return (ft_putnbr(va_arg(*args, int), 0));
+	else if (conversion == 'u')
+		return (ft_pnb(va_arg(*args, unsigned int), "0123456789", 0, 10));
+	else if (conversion == 'x')
+		return (ft_pnb(va_arg(*args, unsigned int), "0123456789abcdef", 0, 16));
+	else if (conversion == 'X')
+		return (ft_pnb(va_arg(*args, unsigned int), "0123456789ABCDEF", 0, 16));
+	else if (conversion == '%')
+		return (ft_putchar('%'));
+	return (0);
 }
 
 int	ft_printf(const char *format, ...)
 {
-	int		i;
-	va_list	v1;
-	int		char_printed;
+	va_list		args;
+	int			i;
+	int			count;
+	int			test;
 
+	va_start(args, format);
 	i = 0;
-	char_printed = 0;
-	va_start(v1, format);
+	count = 0;
+	if (!format)
+		return (-1);
 	while (format[i])
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && format[i + 1])
 		{
-			char_printed += ft_conversion(v1, format[i + 1]);
-			i++;
+			i ++;
+			test = partition(format[i], &args);
+			if (test == -1)
+				return (-1);
+			count += test;
 		}
 		else
-			char_printed += ft_putchar(format[i]);
-		i++;
+			count += ft_putchar(format[i]);
+		i ++;
 	}
-	va_end(v1);
-	return (char_printed);
+	return (count);
 }
-
-// #include <stdio.h>
-
-// int main(void)
+// int main()
 // {
-// 	char c = 't';
-// 	char str[] = "hello";
-// 	int num = 0xAA;
-// 	int	dec = 1239481;
-// 	unsigned int unum = 987654321;
-
-// 	ft_printf("test: No Args\n");
-// 	printf("testf: No Args\n");
-// 	ft_printf("test char: %c\n", c);
-// 	printf("testf char: %c\n", c);
-// 	ft_printf("test str: %s\n", str);
-// 	printf("testf str: %s\n", str);
-// 	ft_printf("test ptr: %p %p \n", str, &str);
-// 	printf("testf ptr: %p %p \n", str, &str);
-// 	ft_printf("test dec: %d\n", dec);
-// 	printf("testf dec: %d\n", dec);
-// 	ft_printf("test int: %i\n", num);
-// 	printf("testf int: %i\n", num);
-// 	ft_printf("test uint: %u\n", unum);
-// 	printf("testf uint: %u\n", unum);
-// 	ft_printf("test hex: %x\n", unum);
-// 	printf("testf hex: %x\n", unum);
-// 	ft_printf("test HEX: %X\n", unum);
-// 	printf("testf HEX: %X\n", unum);
-// 	ft_printf("test %%\n");
-// 	printf("testf %%\n");
-// 	ft_printf(" NULL %s NULL", NULL);
-// 	printf(" NULL %s NULL", NULL);
-// 	printf("Standard printf: Null string: %s\n", NULL);
-//     ft_printf("Custom  ft_printf: Null string: %s\n", NULL);
-//  }
+// 	int num;
+// 	printf(" %d", ft_printf("\n %u la truffe %i %p", -134564645, 0, 2));
+// 	printf(" %d",printf("\n %u la truffe %i %p", -134567645, 0, 2));
+// 	return (0);
+// }
