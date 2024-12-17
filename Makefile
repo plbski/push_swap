@@ -20,10 +20,10 @@ SHARED_FILES = init.c utils.c input_check.c $(OP_SRC)
 SHARED_OBJS = $(SHARED_FILES:.c=.o)
 
 LIBFT_A = libft.a
-LIBFT_DIR = libft/
+LIBFT_DIR = li/
 LIBFT = $(addprefix $(LIBFT_DIR), $(LIBFT_A))
 PRINTF_A = libftprintf.a
-PRINTF_DIR = libft/printf/
+PRINTF_DIR = li/printfnull/
 PRINTF = $(addprefix $(PRINTF_DIR), $(PRINTF_A))
 OBJS = *.o
 BONUS_OBJS = $(BONUS_FILES:.c=.o)
