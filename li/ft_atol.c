@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:55:25 by cbopp             #+#    #+#             */
-/*   Updated: 2024/12/05 11:40:47 by pbuet            ###   ########.fr       */
+/*   Updated: 2024/12/18 17:25:03 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ long	ft_atol(const char *str)
 	int		sign;
 	long	result;
 	long	prev;
+	int		i;
 
+	i = 0;
 	sign = 1;
 	result = 0;
-	while (ft_isspace(*str))
-		str++;
 	if (*str == '-')
 		sign = -1;
 	if (*str == '-' || *str == '+')
@@ -40,6 +40,9 @@ long	ft_atol(const char *str)
 		if (result < prev)
 			return (handle_overflow(sign));
 		str++;
+		i ++;
+		if (i > 10)
+			return (2147483648);
 	}
 	return (result * sign);
 }
